@@ -8,59 +8,26 @@
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 </head>
 
-<body>
-    <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
-        renderer='antialias: true; alpha: true'>
-        <a-assets id="sound" src="sound.mp3" preload="auto"></a-assets>
-        <a-camera gps-projected-camera rotation-reader></a-camera>
-        <!-- <a-entity soundhandler
-        gps-projected-entity-place="latitude:41.285676667088545,; longitude:-82.8376801113776;"
-        position="-.31 .912 .3.006"
-        rotation="-90.920 5.637 0"
-       
-        obj-model="obj: url(/assets/FinalBaseMesh.obj);"> -->
-
-        
-
-        <a-entity 
-        gps-projected-entity-place="latitude: 41.285932679903965,; longitude:-82.83813499714324;"
-        
-        
-        gltf-model="./assets/Lupez.gltf"></a-entity>
-
-
-
-
-
-        </a-entity>
-
-
-
-
-        <a-box color="yellow" gps-entity-place="latitude: 41.285932679903965; longitude: -82.83813499714324"/>
-
-
-
-
-
+<!-- 41.2856858034496, -82.8377079281154-->
+<body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="120 120 120"
+        gps-entity-place="latitude:41.2856858034496 ; longitude: -82.8377079281154;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
-</body>
+  </body>
 
 
 
 
-<script>
-    AFRAME.registerComponent('soundhandler', {
-        tick: function () {
-            // marker is the object3D of marker
-            if (marker.visible && !this.markervisible) {
-                entity.components.sound.playSound();
-                this.markervisible = true;
-            } else if (!marker.visible) {
-                this.markervisible = false;
-            }
-        }
-    });
-</script>
+
 
 </html>
