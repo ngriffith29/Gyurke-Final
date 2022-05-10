@@ -13,12 +13,16 @@
         renderer='antialias: true; alpha: true'>
         <a-assets id="sound" src="sound.mp3" preload="auto"></a-assets>
         <a-camera gps-projected-camera rotation-reader></a-camera>
-        <a-entity soundhandler
+        <!-- <a-entity soundhandler
         gps-projected-entity-place="latitude:41.285676667088545,; longitude:-82.8376801113776;"
         position="-.31 .912 .3.006"
         rotation="-90.920 5.637 0"
        
-        obj-model="obj: url(/assets/FinalBaseMesh.obj);">
+        obj-model="obj: url(/assets/FinalBaseMesh.obj);"> -->
+
+
+
+        <a-entity gltf-model="./assets/Lupez.gltf"></a-entity>
         </a-entity>
 
 
