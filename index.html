@@ -15,7 +15,10 @@ var renderer = new THREE.WebGLRenderer({
   logarithmicDepthBuffer: true
 });
 
-console.log('hi')
+hi = () =>{
+    var audio = new Audio('./assets/audio/better.mp3');
+audio.play();
+}
 
     AFRAME.registerComponent('soundhandler', {
         init: function () {
@@ -41,15 +44,15 @@ console.log('hi')
 
     <body style="margin : 0px; overflow: hidden;">
         <button onclick="hi()">Click here to hear me talk</button>
-        <a-scene embedded arjs  renderer="logarithmicDepthBuffer: true">
+        <!-- <a-scene embedded arjs  renderer="logarithmicDepthBuffer: true" soundhandler>
 
             <a-assets>
                 <audio id="sound" src="/assets/audio/better.mp3" preload="auto"></audio>
             </a-assets>
            
-        <a-marker preset="hiro" smooth="true">
+        <a-marker preset="hiro" smooth="true"> -->
             <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
-            <a-entity
+            <!-- <a-entity
             position="0 4.200 0 "
             scale=".5 .5 .5"
             gltf-model="./assets/Lupez.gltf"
@@ -58,7 +61,7 @@ console.log('hi')
         </a-marker>
         <a-entity sound="src: #sound" autoplay="false"></a-entity>
         <a-entity camera></a-entity>
-        </a-scene>
+        </a-scene> -->
 
       
 
