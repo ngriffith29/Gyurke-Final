@@ -1,14 +1,47 @@
 !DOCTYPE html>
 <html>
-    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <!-- we import arjs version without NFT but with marker + location based support -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js">
-      var renderer = new THREE.WebGLRenderer({
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+   
+
+<script>
+
+var renderer = new THREE.WebGLRenderer({
   logarithmicDepthBuffer: true
 });
-    </script>
+
+console.log('hi')
+
+    AFRAME.registerComponent('soundhandler', {
+        init: function () {
+            this.soundEl = document.querySelector('[sound]');
+            this.marker = document.querySelector('a-marker');
+            this.visible = false;
+        },
+        tick: function () {
+
+            if (this.marker.object3D.visible && !this.visible) {
+                console.log("ding")
+                this.soundEl.components.sound.stopSound(); // stop if playing
+                this.soundEl.components.sound.playSound(); // play
+                this.visible = true; // make sure it plays only once per visible
+            } else if (!this.marker.object3D.visible) {
+                this.visible = false;
+            }
+        }
+    });
+</script>
+</head>
+
     <body style="margin : 0px; overflow: hidden;">
-        <a-scene embedded arjs  renderer="logarithmicDepthBuffer: true">
+        <a-scene embedded arjs  renderer="logarithmicDepthBuffer: true" soundhandler>
+
+            <a-assets>
+                <audio id="sound" src="/assets/audio/better.mp3" preload="auto"></audio>
+            </a-assets>
+           
         <a-marker preset="hiro" smooth="true">
             <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
             <a-entity
@@ -18,6 +51,7 @@
             rotation="-80 0 0"
             ></a-entity>
         </a-marker>
+        <a-entity sound="src: #sound" autoplay="false"></a-entity>
         <a-entity camera></a-entity>
         </a-scene>
 
